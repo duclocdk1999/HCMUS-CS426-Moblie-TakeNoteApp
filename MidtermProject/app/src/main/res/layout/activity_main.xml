@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:weightSum="100">
+
+        <TextView
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:layout_width="349dp"
+            android:layout_height="match_parent"
+            android:layout_weight="75"
+            android:background="#80b3ff"
+            android:text="time"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="89dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25"
+            android:background="#80b3ff"
+            android:text="title"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="393dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/addNoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="+"
+        android:textSize="25sp"
+        android:onClick="addNoteOnClick"/>
+
+
+</LinearLayout>
