@@ -5,30 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ReadNoteActivity">
-
+    tools:context=".AddNoteActivity">
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:text="Inormation Task"
+        android:background="#80b3ff"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="10dp"
+        android:hint="TaskName"
+        android:inputType="text"
+        android:id="@+id/taskname"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="10dp"
+        android:hint="Date"
+        android:inputType="date"
+        android:id="@+id/date"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="10dp"
+        android:hint="Detail"
+        android:inputType="text"
+        android:id="@+id/detail"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="10dp"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:id="@+id/phone"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="10dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:id="@+id/email"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10sp"
-        android:paddingLeft="10sp"
-        android:text="title: "
-        android:textSize="20sp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10sp"
-        android:paddingBottom="10sp"
-        android:text="time: "
-        android:textSize="20sp"/>
-
-    <TextView
-        android:padding="10sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="nothing in this record !"
-        android:textSize="20sp"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+        <Button
+            android:textSize="15dp"
+            android:id="@+id/buttonEdit"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="Edit"
+            android:background="@drawable/editbtn"
+            android:layout_marginRight="20dp"
+            />
+        <Button
+            android:textSize="15dp"
+            android:id="@+id/buttonDelete"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:text="Delete"
+            android:background="@drawable/deletebtn"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
 
 
 </LinearLayout>

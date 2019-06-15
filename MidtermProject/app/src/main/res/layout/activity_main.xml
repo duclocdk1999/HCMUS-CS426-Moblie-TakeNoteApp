@@ -11,28 +11,29 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:weightSum="100">
-
-        <TextView
-            android:gravity="left|center"
-            android:paddingLeft="10dp"
-            android:layout_width="349dp"
-            android:layout_height="match_parent"
-            android:layout_weight="75"
-            android:background="#80b3ff"
-            android:text="time"
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
+        android:background="#80b3ff">
 
         <TextView
             android:gravity="center"
-            android:layout_width="89dp"
+            android:layout_width="155dp"
             android:layout_height="match_parent"
-            android:layout_weight="25"
-            android:background="#80b3ff"
-            android:text="title"
+            android:text="Task Name"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+        <TextView
+            android:gravity="center"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="Date"
             android:textColor="@android:color/black"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Note"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -51,8 +52,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:text="+"
-        android:textSize="25sp"
+        android:layout_marginRight="10dp"
+        android:text="Add"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/addbtn"
         android:onClick="addNoteOnClick"/>
 
 
