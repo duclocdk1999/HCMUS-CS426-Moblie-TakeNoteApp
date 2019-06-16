@@ -14,6 +14,8 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import oppa.example.midtermproject.R;
@@ -43,15 +45,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public void onBindViewHolder(final NoteAdapter.ViewHolder viewHolder, final int i) {
 
         viewHolder.note_item_content.setText(noteRecordList.get(i).getTitle());
+        if (noteRecordList.get(i).getState()) {
+            viewHolder.note_item_state.setText("Done");
+            viewHolder.note_item_state.setTextColor(Color.GREEN);
+        }
+        else {
+            viewHolder.note_item_state.setText("Undone");
+            viewHolder.note_item_state.setTextColor(Color.RED);
+        }
+        viewHolder.note_item_note.setText(noteRecordList.get(i).getContent());
         viewHolder.note_item_schedule.setText(noteRecordList.get(i).getMonth() + "\n" + noteRecordList.get(i).getTime().getYear());
-        viewHolder.note_item_checkbox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               boolean checked =  ((CheckBox) view).isChecked();
-                if (!checked) checked = true;
-                else checked = false;
-            }
-        });
         /*viewHolder.note_item_deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,9 +78,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         LinearLayout note_item_linearLayout;
         TextView note_item_content;
         TextView note_item_schedule;
-        Button note_item_deleteBtn;
-        Button note_item_editBtn;
-        CheckBox note_item_checkbox;
+        TextView note_item_state;
+        TextView note_item_note;
 
 
         OnNoteItemListener onNoteItemListener;
@@ -87,10 +89,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
             this.note_item_content = (TextView) itemView.findViewById(R.id.note_item_content);
             this.note_item_schedule = (TextView) itemView.findViewById(R.id.note_item_schedule);
-            //this.note_item_deleteBtn = (Button) itemView.findViewById(R.id.buttonDelete);
-            //this.note_item_editBtn = (Button) itemView.findViewById(R.id.buttonEdit);
             this.note_item_linearLayout = (LinearLayout) itemView.findViewById(R.id.linearcolor);
-            this.note_item_checkbox = (CheckBox) itemView.findViewById(R.id.checkbox);
+            this.note_item_state = (TextView) itemView.findViewById(R.id.note_item_state);
+            this.note_item_note = (TextView) itemView.findViewById(R.id.note_item_note);
             this.onNoteItemListener = onNoteItemListener;
 
             itemView.setOnClickListener(this);

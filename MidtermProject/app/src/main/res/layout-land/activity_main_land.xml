@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:background="#f9f3d4"
     tools:context=".MainActivity">
-
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -47,26 +50,33 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:layout_weight="0"
         android:layout_width="match_parent"
-        android:layout_height="393dp">
-
+        android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewNote"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/addNoteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Add"
-        android:textSize="15sp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/addbtn"
-        android:onClick="addNoteOnClick"/>
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/addNoteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="-60dp"
+            android:background="@drawable/addbtn"
+            android:onClick="addNoteOnClickLandscape"
+            android:text="Add"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/new_landscape"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </LinearLayout>
 
 
 </LinearLayout>
