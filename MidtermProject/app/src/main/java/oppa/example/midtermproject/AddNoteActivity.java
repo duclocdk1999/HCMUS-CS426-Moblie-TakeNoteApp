@@ -23,10 +23,14 @@ public class AddNoteActivity extends AppCompatActivity {
         EditText taskname = (EditText) findViewById(R.id.taskname);
         EditText datetime = (EditText) findViewById(R.id.date);
         EditText detail = (EditText) findViewById(R.id.detail);
+        EditText phone = (EditText) findViewById(R.id.phone);
+        EditText email = (EditText) findViewById(R.id.email);
         Intent mainIntent = new Intent(this, MainActivity.class);
-        mainIntent.putExtra("message1", taskname.getText().toString());
-        mainIntent.putExtra("message2",datetime.getText().toString());
-        mainIntent.putExtra("message3",detail.getText().toString());
+        mainIntent.putExtra("title", taskname.getText().toString());
+        mainIntent.putExtra("date",datetime.getText().toString());
+        mainIntent.putExtra("content",detail.getText().toString());
+        mainIntent.putExtra("phone",phone.getText().toString());
+        mainIntent.putExtra("email",email.getText().toString());
         setResult(Activity.RESULT_OK, mainIntent);
         finish();
     }

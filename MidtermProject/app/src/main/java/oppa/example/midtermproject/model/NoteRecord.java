@@ -7,12 +7,16 @@ public class NoteRecord {
     private String title;
     private String content;
     private Date time;
+    private String email;
+    private String phone;
 
     //--------------------------------------------
-    public NoteRecord(String title, String content, Date time) {
+    public NoteRecord(String title, String content, String email, String phone, Date time) {
         this.title = title;
         this.content = content;
         this.time = time;
+        this.email = email;
+        this.phone = phone;
     }
     //--------------------------------------------
     public String getContent() {
@@ -28,6 +32,16 @@ public class NoteRecord {
     public String getTitle() {
 
         return this.title;
+    }
+    //--------------------------------------------
+    public String getEmail() {
+
+        return this.email;
+    }
+    //--------------------------------------------
+    public String getPhone() {
+
+        return this.phone;
     }
     //--------------------------------------------
     public String getDay() {

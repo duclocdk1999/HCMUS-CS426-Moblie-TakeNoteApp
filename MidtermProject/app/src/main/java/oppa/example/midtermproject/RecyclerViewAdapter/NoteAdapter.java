@@ -21,8 +21,8 @@ import oppa.example.midtermproject.model.NoteRecord;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private ArrayList<NoteRecord> noteRecordList;
-    private OnNoteItemListener onNoteItemListener;      // this type is used to support onNoteClick ( I mean when user click on a note )
+    public ArrayList<NoteRecord> noteRecordList;
+    public OnNoteItemListener onNoteItemListener;      // this type is used to support onNoteClick ( I mean when user click on a note )
                                                         // sorry đũy Nam vì khúc này éo biết đặt tên biến sao cho đẹp :)
     //----------------------------------------------------------------------------------------------
     public NoteAdapter(OnNoteItemListener onNoteItemListener, ArrayList<NoteRecord> noteRecordList) {
@@ -68,6 +68,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         return this.noteRecordList.size();
     }
+
+
     //----------------------------------------------------------------------------------------------
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         LinearLayout note_item_linearLayout;

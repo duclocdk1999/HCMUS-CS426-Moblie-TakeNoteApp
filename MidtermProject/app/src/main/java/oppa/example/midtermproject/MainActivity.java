@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         if (requestCode == 1)
         {
             if (resultCode == Activity.RESULT_OK) {
-                NoteRecord itemNew = new NoteRecord(data.getStringExtra("message1"),data.getStringExtra("message3"), new Date(1,2,3));
+                NoteRecord itemNew = new NoteRecord(data.getStringExtra("title"),data.getStringExtra("content"),data.getStringExtra("email"),data.getStringExtra("phone"), new Date(1,2,3));
                 noteRecordList.add(0,itemNew);
                 adapterGlobal.notifyItemInserted(0);
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
     public void setData() {
         for (int i = 0; i < 30; i++) {
 
-            NoteRecord note = new NoteRecord(" #Title " + String.valueOf(i), "Nothing to seen", new Date(i, i+1, i+2));
+            NoteRecord note = new NoteRecord(" #Title " + String.valueOf(i), "Nothing to seen","12","13", new Date(i, i+1, i+2));
             noteRecordList.add(note);
         }
     }
@@ -77,8 +77,14 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
     @Override
     public void onNoteItemClick(int position) {
         // this function is implemented when user click on the available note in order to show content
-
         Intent readNoteIntent = new Intent(this, ReadNoteActivity.class);
-        startActivity(readNoteIntent);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewNote);
+        NoteAdapter adapt = (NoteAdapter) recyclerView.getAdapter();
+        readNoteIntent.putExtra("taskname",adapt.noteRecordList.get(position).getTitle());
+        readNoteIntent.putExtra("date",adapt.noteRecordList.get(position).getDay());
+        readNoteIntent.putExtra("detail",adapt.noteRecordList.get(position).getContent());
+        readNoteIntent.putExtra("phone",adapt.noteRecordList.get(position).getPhone());
+        readNoteIntent.putExtra("email",adapt.noteRecordList.get(position).getEmail());
+        startActivityForResult(readNoteIntent,2);
     }
 }
