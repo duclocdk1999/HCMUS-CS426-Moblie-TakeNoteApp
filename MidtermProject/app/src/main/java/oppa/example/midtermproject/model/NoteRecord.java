@@ -4,15 +4,18 @@ import java.util.Date;
 
 public class NoteRecord {
 
+    private int id;
     private String title;
     private String content;
-    private Date time;
+    private String time;
     private String email;
     private String phone;
     private boolean state;
 
     //--------------------------------------------
-    public NoteRecord(String title, String content, String email, String phone, Date time, boolean state) {
+    public NoteRecord(int id, String title, String content, String email, String phone, String time, boolean state) {
+
+        this.id = id;
         this.title = title;
         this.content = content;
         this.time = time;
@@ -20,7 +23,11 @@ public class NoteRecord {
         this.phone = phone;
         this.state = state;
     }
+    //--------------------------------------------
+    public int getId() {
 
+        return this.id;
+    }
     //--------------------------------------------
     public String getContent() {
 
@@ -28,7 +35,7 @@ public class NoteRecord {
     }
 
     //--------------------------------------------
-    public Date getTime() {
+    public String getTime() {
 
         return this.time;
     }
@@ -57,28 +64,12 @@ public class NoteRecord {
     }
 
     //--------------------------------------------
-    public String getDay() {
-
-        int index_day = this.time.getDay();
-        String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        return days[index_day];
-    }
-
-    //--------------------------------------------
-    public String getMonth() {
-
-        int index_month = this.time.getMonth();
-        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        return months[index_month];
-    }
-
-    //--------------------------------------------
     public void setContent(String content) {
         this.content = content;
     }
 
     //--------------------------------------------
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -100,4 +91,20 @@ public class NoteRecord {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /*--------------------------------------------
+    public String getDay() {
+
+        int index_day = this.time.getDay();
+        String[] days = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        return days[index_day];
+    }
+
+    //--------------------------------------------
+    public String getMonth() {
+
+        int index_month = this.time.getMonth();
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        return months[index_month];
+    }*/
 }

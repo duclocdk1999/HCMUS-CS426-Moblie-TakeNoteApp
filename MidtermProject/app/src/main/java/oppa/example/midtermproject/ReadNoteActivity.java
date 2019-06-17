@@ -19,6 +19,7 @@ public class ReadNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_note);
         setUp();
     }
+    //----------------------------------------------------------------------------------------------
     public void setUp() {
         EditText taskname = (EditText) findViewById(R.id.taskname);
         EditText datetime = (EditText) findViewById(R.id.date);
@@ -26,7 +27,9 @@ public class ReadNoteActivity extends AppCompatActivity {
         EditText phone = (EditText) findViewById(R.id.phone);
         EditText email = (EditText) findViewById(R.id.email);
         CheckBox state = (CheckBox) findViewById(R.id.checkbox);
+
         Intent intent = getIntent();
+
         position = intent.getIntExtra("position",0);
         taskname.setText(intent.getStringExtra("taskname"));
         datetime.setText(intent.getStringExtra("date"));
@@ -40,6 +43,7 @@ public class ReadNoteActivity extends AppCompatActivity {
             state.setChecked(false);
         }
     }
+    //----------------------------------------------------------------------------------------------
     public void editNote(View view) {
         EditText taskname = (EditText) findViewById(R.id.taskname);
         EditText datetime = (EditText) findViewById(R.id.date);
@@ -47,7 +51,9 @@ public class ReadNoteActivity extends AppCompatActivity {
         EditText phone = (EditText) findViewById(R.id.phone);
         EditText email = (EditText) findViewById(R.id.email);
         CheckBox state = (CheckBox) findViewById(R.id.checkbox);
+
         boolean checked = state.isChecked();
+
         Intent mainIntent = new Intent(this, MainActivity.class);
         mainIntent.putExtra("position",position);
         mainIntent.putExtra("taskname", taskname.getText().toString());
@@ -56,6 +62,7 @@ public class ReadNoteActivity extends AppCompatActivity {
         mainIntent.putExtra("content",detail.getText().toString());
         mainIntent.putExtra("phone",phone.getText().toString());
         mainIntent.putExtra("email",email.getText().toString());
+
         if (checked)
             mainIntent.putExtra("state",true);
         else
@@ -63,12 +70,14 @@ public class ReadNoteActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK, mainIntent);
         finish();
     }
+    //----------------------------------------------------------------------------------------------
     public void deleteNote(View view) {
         Intent mainIntent = new Intent(this, MainActivity.class);
         mainIntent.putExtra("position",position);
         setResult(1, mainIntent);
         finish();
     }
+    //----------------------------------------------------------------------------------------------
     public void checkTask(View view) {
         boolean checked = ((CheckBox) view).isChecked();
         checked = !checked;
