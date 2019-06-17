@@ -19,6 +19,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
     private int resultCode;
     private Intent data;
     private int mPosition = 0;
+    SQLiteDatabase mDatabase;
+    String DATABASE_NAME = "NoteDatabase";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +68,16 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
             email = savedInstanceState.getStringArrayList("email");
             date = savedInstanceState.getStringArrayList("date");
             for (int i = 0; i < taskname.size(); i++) {
-                NoteRecord note = new NoteRecord(taskname.get(i), content.get(i),email.get(i),phone.get(i), new Date(i, i+1, i+2), state[i]);
+                NoteRecord note = new NoteRecord(taskname.get(i), content.get(i),email.get(i),phone.get(i), date.get(i), state[i]);
                 noteRecordList.add(note);
             }
         }
         else
-            setData();
+        {
+            mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+            createNotesTableIfNotExists();
+            reloadNoteRecordListFromDatabase();
+        }
         initRecyclerViewNote();
     }
     //------------------------------------------------------------------------------------
@@ -78,15 +87,36 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
             if (resultCode == Activity.RESULT_OK) {
                 NoteRecord itemNew = new NoteRecord(data.getStringExtra("taskname"),data.getStringExtra("content"),data.getStringExtra("email"),data.getStringExtra("phone"), new Date(1,2,3),false);
                 noteRecordList.add(0,itemNew);
+
+                String title = data.getStringExtra("taskname");
+                String content = data.getStringExtra("content");
+                String email = data.getStringExtra("email");
+                String phone = data.getStringExtra("phone");
+                String time = data.getStringExtra("date");
+
+                insertNoteIntoDatabase(title, content, email, phone, time);
+                reloadNoteRecordListFromDatabase();
+
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
                 NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
                 adapt.notifyItemInserted(0);
                 recyclerViewNote.setAdapter(adapt);
                 recyclerViewNote.scrollToPosition(0);
+
             }
         }
         else if (requestCode == 2) {
             if (resultCode == Activity.RESULT_OK) {
+
+                String title = data.getStringExtra("taskname");
+                String content = data.getStringExtra("content");
+                String email = data.getStringExtra("email");
+                String phone = data.getStringExtra("phone");
+                String time = data.getStringExtra("date");
+                Boolean state = data.getBooleanExtra("state", false);
+                // update data in table
+                int item_position = data.getIntExtra("position", 0);
+                updateNoteInDatabaseById(noteRecordList.get(item_position).getId(), title, content, email, phone, time);
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
                 NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
                 adapt.noteRecordList.get(data.getIntExtra("position", 0)).setContent(data.getStringExtra("content"));
@@ -100,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
                 NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
                 int i = data.getIntExtra("position",0);
+                deleteNoteInDatabaseById(noteRecordList.get(i).getId());
                 adapt.noteRecordList.remove(i);
                 adapt.notifyItemRemoved(i);
                 adapt.notifyItemRangeChanged(i,adapt.noteRecordList.size());
@@ -108,13 +139,60 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
 
     }
     //----------------------------------------------------------------------------------------------
-    public void setData() {
-        for (int i = 0; i < 30; i++) {
+    private void createNotesTableIfNotExists() {
 
-            NoteRecord note = new NoteRecord(" #Title " + String.valueOf(i), "Nothing to seen","12","13", new Date(i, i+1, i+2), false);
-            noteRecordList.add(note);
-        }
+        mDatabase.execSQL("CREATE TABLE IF NOT EXISTS Notes(\n" +
+                "          title nvarchar(100),\n" +
+                "          content nvarchar(500),\n" +
+                "          email varchar(100),\n" +
+                "          phone varchar(30),\n" +
+                "          time varchar(50));\n"
+        );
     }
+    //----------------------------------------------------------------------------------------------
+    private void insertNoteIntoDatabase(String title, String content, String email, String phone, String time) {
+
+        String sqlcmd = "INSERT INTO Notes(title, content, email, phone, time) VALUES (?, ?, ?, ?, ?);";
+        mDatabase.execSQL(sqlcmd, new String[] {title, content, email, phone, time});
+    }
+    //----------------------------------------------------------------------------------------------
+    private void updateNoteInDatabaseById(int id, String title, String content, String email, String phone, String time) {
+
+        String sqlcmd = "UPDATE Notes SET title = ?, content = ?, email = ?, phone = ?, time = ? WHERE rowid = ?;";
+
+        mDatabase.execSQL(sqlcmd, new String[] {title, content, email, phone, time, String.valueOf(id)});
+    }
+    //----------------------------------------------------------------------------------------------
+    private void deleteNoteInDatabaseById(int id) {
+
+        String sqlcmd = "DELETE FROM Notes WHERE rowid = ?;";
+        mDatabase.execSQL(sqlcmd, new String[] {String.valueOf(id)});
+    }
+    //----------------------------------------------------------------------------------------------
+    private void reloadNoteRecordListFromDatabase() {
+
+        Cursor cursorNotes = mDatabase.rawQuery("SELECT rowid, title, content, email, phone, time FROM Notes;", null);
+        if (cursorNotes.moveToFirst()) {
+            noteRecordList.clear();
+            do {
+                noteRecordList.add(new NoteRecord(
+                        cursorNotes.getInt(0),
+                        cursorNotes.getString(1),
+                        cursorNotes.getString(2),
+                        cursorNotes.getString(3),
+                        cursorNotes.getString(4),
+                        cursorNotes.getString(5),
+                        false
+                ));
+
+                Log.d("nvdloc-id", noteRecordList.get(noteRecordList.size() - 1).getId() + "");
+                Log.d("nvdloc-title", noteRecordList.get(noteRecordList.size() - 1).getTitle());
+
+            } while (cursorNotes.moveToNext());
+        }
+        cursorNotes.close();
+    }
+
     //----------------------------------------------------------------------------------------------
     void initRecyclerViewNote() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
