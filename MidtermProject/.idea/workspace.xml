@@ -14,8 +14,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ee73da3-5055-4cff-9add-bf06327fdf18" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,13 +55,31 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+            <state relative-caret-position="264">
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9668#10231#0" expanded="true" />
-                <element signature="e#10230#10231#0" expanded="true" />
+                <element signature="e#13644#14207#0" expanded="true" />
+                <element signature="e#14206#14207#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="56" column="77" selection-start-line="56" selection-start-column="77" selection-end-line="56" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
         </entry>
@@ -62,16 +90,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
               <caret line="151" column="26" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_note2.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -161,13 +179,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/editbtn.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/deletebtn.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/AddNoteActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/launcher_screen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/note_item_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/corner.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_note2.xml" />
@@ -178,11 +194,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/ReadNoteActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_read_note.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_read_note2.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/MainActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="718" />
     <option name="height" value="900" />
   </component>
@@ -297,7 +315,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="718" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1050" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" />
@@ -307,7 +325,7 @@
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Resources Explorer" order="6" weight="0.3297568" />
-      <window_info content_ui="combo" id="Project" order="7" weight="0.4289941" />
+      <window_info content_ui="combo" id="Project" order="7" weight="0.8860947" />
       <window_info id="Captures" order="8" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Logcat" order="0" sideWeight="0.49887133" weight="0.32891566" />
       <window_info anchor="bottom" id="TODO" order="1" />
@@ -315,13 +333,13 @@
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.32891566" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50572246" side_tool="true" weight="0.28674698" />
-      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.49427754" visible="true" weight="0.28674698" />
+      <window_info anchor="bottom" id="Build" order="6" sideWeight="0.49427754" weight="0.28674698" />
       <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.788269" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.788269" visible="true" weight="0.32891566" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="right" id="Gradle" order="1" weight="0.021459227" />
       <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="right" id="Preview" order="3" weight="0.40343347" />
+      <window_info anchor="right" id="Preview" order="3" weight="0.4027778" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="Device File Explorer" order="5" side_tool="true" />
     </layout>
@@ -350,13 +368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="73" selection-start-line="73" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
         </state>
       </provider>
     </entry>
@@ -439,13 +450,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="48" column="55" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/corner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -471,14 +475,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/calender.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_note.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="151" column="26" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/addbtn.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -529,14 +525,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_note.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="151" column="26" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/model/NoteRecord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/RecyclerViewAdapter/NoteAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="56" column="77" selection-start-line="56" selection-start-column="77" selection-end-line="56" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/oppa/example/midtermproject/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+        <state relative-caret-position="264">
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9668#10231#0" expanded="true" />
-            <element signature="e#10230#10231#0" expanded="true" />
+            <element signature="e#13644#14207#0" expanded="true" />
+            <element signature="e#14206#14207#0" expanded="true" />
           </folding>
         </state>
       </provider>

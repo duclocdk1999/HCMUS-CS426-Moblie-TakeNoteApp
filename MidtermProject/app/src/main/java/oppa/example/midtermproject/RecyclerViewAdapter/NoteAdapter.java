@@ -54,7 +54,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             viewHolder.note_item_state.setTextColor(Color.parseColor("#EE5A5A"));
         }
         viewHolder.note_item_note.setText(noteRecordList.get(i).getContent());
-        viewHolder.note_item_schedule.setText(noteRecordList.get(i).getMonth() + "\n" + noteRecordList.get(i).getTime().getYear());
+        viewHolder.note_item_schedule.setText(noteRecordList.get(i).getTime());
         /*viewHolder.note_item_deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
