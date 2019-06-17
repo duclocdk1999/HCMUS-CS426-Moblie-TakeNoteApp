@@ -18,33 +18,22 @@
         android:background="#80b3ff">
 
         <TextView
+            android:textStyle="bold"
+            android:background="#80b3ff"
             android:gravity="center"
-            android:layout_width="140dp"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
-            android:text="Task Name"
-            android:textColor="@android:color/white"
+            android:text="Task"
+            android:textColor="#f2f6fc"
             android:textSize="20sp" />
         <TextView
-            android:gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:text="Date"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:text="State"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-        <TextView
+            android:textStyle="bold"
+            android:background="#f2f6fc"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Note"
-            android:textColor="@android:color/black"
+            android:textColor="#2670e0"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -62,15 +51,15 @@
         <Button
             android:layout_weight="1"
             android:id="@+id/addNoteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
             android:layout_marginTop="-60dp"
             android:background="@drawable/addbtn"
             android:onClick="addNoteOnClickLandscape"
-            android:text="Add"
+            android:text="+"
             android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:textSize="30sp" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/new_landscape"

@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT)
             setContentView(R.layout.activity_main);
@@ -168,6 +173,20 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
             email.setText(adapt.noteRecordList.get(mPosition).getEmail());
             phone.setText(adapt.noteRecordList.get(mPosition).getPhone());
             state.setChecked(adapt.noteRecordList.get(mPosition).getState());
+            ImageButton mDialButton = (ImageButton) findViewById(R.id.call);
+            final EditText mPhoneNoEt = (EditText) findViewById(R.id.phone);
+            mDialButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String phoneNo = mPhoneNoEt.getText().toString();
+                    if(!TextUtils.isEmpty(phoneNo)) {
+                        String dial = "tel:" + phoneNo;
+                        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
+                    }else {
+                        Toast.makeText(MainActivity.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
     @Override

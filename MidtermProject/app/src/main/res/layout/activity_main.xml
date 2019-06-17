@@ -9,46 +9,36 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50sp"
         android:background="#80b3ff">
 
         <TextView
+            android:textStyle="bold"
+            android:background="#f2f6fc"
             android:gravity="center"
-            android:layout_width="140dp"
+            android:layout_width="170dp"
             android:layout_height="match_parent"
-            android:text="Task Name"
-            android:textColor="@android:color/white"
+            android:text="Task"
+            android:textColor="#2670e0"
             android:textSize="20sp" />
         <TextView
-            android:gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:text="Date"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
-        <TextView
-            android:paddingLeft="10dp"
-            android:gravity="center"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:text="State"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-        <TextView
+            android:textStyle="bold"
+            android:background="#80b3ff"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Note"
-            android:textColor="@android:color/black"
+            android:textColor="#f2f6fc"
             android:textSize="20sp" />
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="393dp">
+        android:layout_height="385dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewNote"
@@ -57,16 +47,16 @@
     </RelativeLayout>
 
     <Button
-        android:layout_marginTop="10dp"
         android:id="@+id/addNoteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Add"
-        android:textSize="15sp"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
         android:background="@drawable/addbtn"
-        android:onClick="addNoteOnClick"/>
+        android:onClick="addNoteOnClick"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
 
 
 </LinearLayout>

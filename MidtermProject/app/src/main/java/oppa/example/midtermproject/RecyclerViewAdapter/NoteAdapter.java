@@ -47,11 +47,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         viewHolder.note_item_content.setText(noteRecordList.get(i).getTitle());
         if (noteRecordList.get(i).getState()) {
             viewHolder.note_item_state.setText("Done");
-            viewHolder.note_item_state.setTextColor(Color.GREEN);
+            viewHolder.note_item_state.setTextColor(Color.parseColor("#93D6D0"));
         }
         else {
             viewHolder.note_item_state.setText("Undone");
-            viewHolder.note_item_state.setTextColor(Color.RED);
+            viewHolder.note_item_state.setTextColor(Color.parseColor("#EE5A5A"));
         }
         viewHolder.note_item_note.setText(noteRecordList.get(i).getContent());
         viewHolder.note_item_schedule.setText(noteRecordList.get(i).getMonth() + "\n" + noteRecordList.get(i).getTime().getYear());
