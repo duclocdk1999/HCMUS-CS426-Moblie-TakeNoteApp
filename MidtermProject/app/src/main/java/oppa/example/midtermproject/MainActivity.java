@@ -52,9 +52,11 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
             placeHolder.removeAllViewsInLayout();
             getLayoutInflater().inflate(R.layout.activity_add_note2, placeHolder);
         }
-            mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-            createNotesTableIfNotExists();
-            reloadNoteRecordListFromDatabase();
+
+        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        createNotesTableIfNotExists();
+        reloadNoteRecordListFromDatabase();
+
         initRecyclerViewNote();
     }
     //------------------------------------------------------------------------------------
@@ -65,13 +67,14 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
                 /*NoteRecord itemNew = new NoteRecord(data.getStringExtra("taskname"),data.getStringExtra("content"),data.getStringExtra("email"),data.getStringExtra("phone"), new Date(1,2,3),false);
                 noteRecordList.add(0,itemNew);*/
 
+
                 String title = data.getStringExtra("taskname");
                 String content = data.getStringExtra("content");
                 String email = data.getStringExtra("email");
                 String phone = data.getStringExtra("phone");
                 String time = data.getStringExtra("date");
 
-                insertNoteIntoDatabase(title, content, email, phone, time);
+                insertNoteIntoDatabase(title, content, email, phone, time, 0);
                 reloadNoteRecordListFromDatabase();
 
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         }
         else if (requestCode == 2) {
             if (resultCode == Activity.RESULT_OK) {
+                // edit note
 
                 String title = data.getStringExtra("taskname");
                 String content = data.getStringExtra("content");
@@ -91,9 +95,11 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
                 String phone = data.getStringExtra("phone");
                 String time = data.getStringExtra("date");
                 Boolean state = data.getBooleanExtra("state", false);
+
                 // update data in table
                 int item_position = data.getIntExtra("position", 0);
-                updateNoteInDatabaseById(noteRecordList.get(item_position).getId(), title, content, email, phone, time);
+                updateNoteInDatabaseById(noteRecordList.get(item_position).getId(), title, content, email, phone, time, state ? 1:0);
+
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
                 NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
                 adapt.noteRecordList.get(data.getIntExtra("position", 0)).setContent(data.getStringExtra("content"));
@@ -104,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
                 recyclerViewNote.setAdapter(adapt);
             }
             if (resultCode == 1) {
+                // delete note
+
                 RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
                 NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
                 int i = data.getIntExtra("position",0);
@@ -113,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
                 adapt.notifyItemRangeChanged(i,adapt.noteRecordList.size());
             }
         }
-
     }
     //----------------------------------------------------------------------------------------------
     private void createNotesTableIfNotExists() {
@@ -123,21 +130,22 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
                 "          content nvarchar(500),\n" +
                 "          email varchar(100),\n" +
                 "          phone varchar(30),\n" +
-                "          time varchar(50));\n"
+                "          time varchar(50),\n" +
+                "          state int);"
         );
     }
     //----------------------------------------------------------------------------------------------
-    private void insertNoteIntoDatabase(String title, String content, String email, String phone, String time) {
+    private void insertNoteIntoDatabase(String title, String content, String email, String phone, String time, int state) {
 
-        String sqlcmd = "INSERT INTO Notes(title, content, email, phone, time) VALUES (?, ?, ?, ?, ?);";
-        mDatabase.execSQL(sqlcmd, new String[] {title, content, email, phone, time});
+        String sqlcmd = "INSERT INTO Notes(title, content, email, phone, time, state) VALUES (?, ?, ?, ?, ?, ?);";
+        mDatabase.execSQL(sqlcmd, new String[] {title, content, email, phone, time, String.valueOf(state)});
     }
     //----------------------------------------------------------------------------------------------
-    private void updateNoteInDatabaseById(int id, String title, String content, String email, String phone, String time) {
+    private void updateNoteInDatabaseById(int id, String title, String content, String email, String phone, String time, int state) {
 
-        String sqlcmd = "UPDATE Notes SET title = ?, content = ?, email = ?, phone = ?, time = ? WHERE rowid = ?;";
+        String sqlcmd = "UPDATE Notes SET title = ?, content = ?, email = ?, phone = ?, time = ?, state = ? WHERE rowid = ?;";
 
-        mDatabase.execSQL(sqlcmd, new String[] {title, content, email, phone, time, String.valueOf(id)});
+        mDatabase.execSQL(sqlcmd, new String[] {title, content, email, phone, time, String.valueOf(state), String.valueOf(id)});
     }
     //----------------------------------------------------------------------------------------------
     private void deleteNoteInDatabaseById(int id) {
@@ -148,23 +156,22 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
     //----------------------------------------------------------------------------------------------
     private void reloadNoteRecordListFromDatabase() {
 
-        Cursor cursorNotes = mDatabase.rawQuery("SELECT rowid, title, content, email, phone, time FROM Notes;", null);
+        Cursor cursorNotes = mDatabase.rawQuery("SELECT rowid, title, content, email, phone, time, state FROM Notes;", null);
         if (cursorNotes.moveToFirst()) {
+
             noteRecordList.clear();
             do {
-                noteRecordList.add(new NoteRecord(
-                        cursorNotes.getInt(0),
-                        cursorNotes.getString(1),
-                        cursorNotes.getString(2),
-                        cursorNotes.getString(3),
-                        cursorNotes.getString(4),
-                        cursorNotes.getString(5),
-                        false
-                ));
+                int id = cursorNotes.getInt(0);
+                String title = cursorNotes.getString(1);
+                String content = cursorNotes.getString(2);
+                String email = cursorNotes.getString(3);
+                String phone = cursorNotes.getString(4);
+                String time = cursorNotes.getString(5);
+                int state = cursorNotes.getInt(6);
+                noteRecordList.add(new NoteRecord(id, title, content, email, phone, time, state == 1 ? true:false));
 
                 Log.d("nvdloc-id", noteRecordList.get(noteRecordList.size() - 1).getId() + "");
                 Log.d("nvdloc-title", noteRecordList.get(noteRecordList.size() - 1).getTitle());
-
             } while (cursorNotes.moveToNext());
         }
         cursorNotes.close();
@@ -210,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
             startActivityForResult(readNoteIntent, 2);
         }
         else {
+
             mPosition = position;
             LinearLayout placeHolder = (LinearLayout) findViewById(R.id.new_landscape);
             placeHolder.removeAllViewsInLayout();
@@ -233,18 +241,23 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
             mDialButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     String phoneNo = mPhoneNoEt.getText().toString();
                     if(!TextUtils.isEmpty(phoneNo)) {
+
                         String dial = "tel:" + phoneNo;
                         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
                     }else {
+
                         Toast.makeText(MainActivity.this, "Enter a phone number", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
     }
+    //----------------------------------------------------------------------------------------------
     public void editNote2(View view) {
+
         EditText taskname = (EditText) findViewById(R.id.taskname);
         EditText datetime = (EditText) findViewById(R.id.date);
         EditText detail = (EditText) findViewById(R.id.detail);
@@ -252,7 +265,15 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         EditText email = (EditText) findViewById(R.id.email);
         CheckBox state = (CheckBox) findViewById(R.id.checkbox);
         boolean checked = state.isChecked();
-        updateNoteInDatabaseById(noteRecordList.get(mPosition).getId(), taskname.getText().toString(), detail.getText().toString(), email.getText().toString(), phone.getText().toString(), datetime.getText().toString());
+
+        updateNoteInDatabaseById(noteRecordList.get(mPosition).getId(),
+                taskname.getText().toString(),
+                detail.getText().toString(),
+                email.getText().toString(),
+                phone.getText().toString(),
+                datetime.getText().toString(),
+                checked ? 1:0);
+
         RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
         NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
         adapt.noteRecordList.get(mPosition).setContent(detail.getText().toString());
@@ -262,7 +283,9 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         adapt.noteRecordList.get(mPosition).setState(checked);
         recyclerViewNote.setAdapter(adapt);
     }
+    //----------------------------------------------------------------------------------------------
     public void deleteNote2(View view) {
+
         RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
         NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
         adapt.noteRecordList.remove(mPosition);
@@ -272,7 +295,9 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         placeHolder.removeAllViewsInLayout();
         getLayoutInflater().inflate(R.layout.activity_add_note2, placeHolder);
     }
+    //----------------------------------------------------------------------------------------------
     public void saveNote2(View view) {
+
         EditText taskname = (EditText) findViewById(R.id.taskname);
         EditText datetime = (EditText) findViewById(R.id.date);
         EditText detail = (EditText) findViewById(R.id.detail);
@@ -286,8 +311,10 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         String email = emailView.getText().toString();
         String phone = phoneView.getText().toString();
         String time = datetime.getText().toString();
-        insertNoteIntoDatabase(title, content, email, phone, time);
+
+        insertNoteIntoDatabase(title, content, email, phone, time, 0);
         reloadNoteRecordListFromDatabase();
+
         RecyclerView recyclerViewNote = (RecyclerView) findViewById(R.id.recyclerViewNote);
         NoteAdapter adapt = (NoteAdapter) recyclerViewNote.getAdapter();
         adapt.notifyItemInserted(0);
@@ -297,7 +324,9 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.OnNot
         placeHolder.removeAllViewsInLayout();
         getLayoutInflater().inflate(R.layout.activity_add_note2, placeHolder);
     }
+    //----------------------------------------------------------------------------------------------
     public void checkTask2(View view) {
+
         boolean checked = ((CheckBox) view).isChecked();
         checked = !checked;
     }
