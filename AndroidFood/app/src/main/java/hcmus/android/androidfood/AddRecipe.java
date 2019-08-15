@@ -30,6 +30,7 @@ public class AddRecipe extends AppCompatActivity{
     EditText unit;
     EditText ingredient;
     EditText step;
+    EditText nameFood;
     Button addIngredientButton;
     Button addStepButton;
     ListView lv;
@@ -37,6 +38,11 @@ public class AddRecipe extends AppCompatActivity{
     ImageView uploadImage;
     Button uploadImageBtn;
     String imgUri;
+    String foodName;
+    ArrayList<Integer> amountArray = new ArrayList<Integer>();
+    ArrayList<String> unitArray = new ArrayList<String>();
+    ArrayList<String> ingredientArray = new ArrayList<String>();
+    ArrayList<String> stepArray = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,13 +71,16 @@ public class AddRecipe extends AppCompatActivity{
                     try
                     {
                         Integer.parseInt(amountStr);
-                        itemList.add(amount.getText().toString() + " " + unit.getText().toString() + " " + ingredient.getText().toString());
+                        itemList.add(amountStr + " " + unitStr + " " + ingredientStr);
                         amount.setText("");
                         unit.setText("");
                         ingredient.setText("");
                         adapter.notifyDataSetChanged();
                         lv.setAdapter(adapter);
                         LVHelper.getListViewSize(lv);
+                        amountArray.add(Integer.parseInt(amountStr));  //Thêm vào global amount array
+                        unitArray.add(unitStr);                        //Thêm vào global unit array
+                        ingredientArray.add(ingredientStr);            //Thêm vào global ingredient array
                         return;
 
                     } catch (NumberFormatException ex) {
@@ -90,6 +99,7 @@ public class AddRecipe extends AppCompatActivity{
                     adapterStep.notifyDataSetChanged();
                     lvStep.setAdapter(adapterStep);
                     LVHelper.getListViewSize(lvStep);
+                    stepArray.add(stepStr);
                 }
             }
         };
@@ -103,9 +113,11 @@ public class AddRecipe extends AppCompatActivity{
         addIngredientButton.setOnClickListener(addIngredient);
         addStepButton.setOnClickListener(addStep);
         uploadImageBtn.setOnClickListener(uploadImg);
-//        uploadImage.setOnClickListener();
     }
     public void saveNote(View view) {
+        nameFood = (EditText)findViewById(R.id.foodname);
+        foodName = nameFood.getText().toString();  // Thêm vào global foodname string
+//        imgUri+amountArray+unitArray+ingredientArray+stepArray+foodName sẽ đẩy vào database đống này cho tui
 
         setResult(Activity.RESULT_OK);
         finish();
@@ -115,6 +127,7 @@ public class AddRecipe extends AppCompatActivity{
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             uploadImage.setImageURI(selectedImage);
+            imgUri = selectedImage.toString();  //Thêm vào global uri image string
         }
     }
 }
