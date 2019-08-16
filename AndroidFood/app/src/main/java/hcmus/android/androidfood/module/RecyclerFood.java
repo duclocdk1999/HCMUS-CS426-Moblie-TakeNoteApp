@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -40,7 +42,11 @@ public class RecyclerFood extends RecyclerView.Adapter<RecyclerFood.RecyclerView
         @Override
         public void onBindViewHolder(RecyclerViewHolder holder, int position) {
             holder.txtFoodName.setText(foodName.get(position));
-            new DownloadImage(this.imgUri.get(position), holder.imgFood).execute();
+            String url = SERVER_ADDRESS + "pictures/" + imgUri.get(position) + ".JPG";
+            Picasso.with(holder.imgFood.getContext()).cancelRequest(holder.imgFood);
+            Picasso.with(holder.imgFood.getContext()).load(url).into(holder.imgFood);
+//            holder.imgFood.setImageDrawable(null);
+//            new DownloadImage(this.imgUri.get(position), holder.imgFood).execute();
         }
 
         @Override

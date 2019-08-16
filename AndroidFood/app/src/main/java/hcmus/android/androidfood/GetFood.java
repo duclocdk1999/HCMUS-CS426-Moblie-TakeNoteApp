@@ -37,7 +37,7 @@ public class GetFood extends AppCompatActivity {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 //            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 //            mRecyclerView.setLayoutManager(layoutManager);
-            mRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
             mRecyclerView.setAdapter(mRcvAdapter);
         }
     }
