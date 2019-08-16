@@ -2,6 +2,7 @@ package hcmus.android.androidfood;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,17 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import hcmus.android.androidfood.module.LVHelper;
+import hcmus.android.androidfood.module.Room;
 
 public class AddRecipe extends AppCompatActivity{
     private static final int RESULT_LOAD_IMAGE = 1;
+    private static final String DATABASE_NAME = "FoodAppDatabase";
+
     ArrayList<String> itemList;
     ArrayAdapter<String> adapter;
     ArrayList<String> itemStep;
     ArrayAdapter<String> adapterStep;
+
     EditText amount;
     EditText unit;
     EditText ingredient;
@@ -39,10 +44,12 @@ public class AddRecipe extends AppCompatActivity{
     Button uploadImageBtn;
     String imgUri;
     String foodName;
+
     ArrayList<Integer> amountArray = new ArrayList<Integer>();
     ArrayList<String> unitArray = new ArrayList<String>();
     ArrayList<String> ingredientArray = new ArrayList<String>();
     ArrayList<String> stepArray = new ArrayList<String>();
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,7 @@ public class AddRecipe extends AppCompatActivity{
         adapterStep = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, itemStep);
         itemList = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, itemList);
+
         View.OnClickListener addIngredient = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,20 +118,44 @@ public class AddRecipe extends AppCompatActivity{
                 startActivityForResult(galleryIntent,RESULT_LOAD_IMAGE);
             }
         };
+
         addIngredientButton.setOnClickListener(addIngredient);
         addStepButton.setOnClickListener(addStep);
         uploadImageBtn.setOnClickListener(uploadImg);
     }
+    //----------------------------------------------------------------------------------------------
     public void saveNote(View view) {
+
         nameFood = (EditText)findViewById(R.id.foodname);
         foodName = nameFood.getText().toString();  // Thêm vào global foodname string
-//        imgUri+amountArray+unitArray+ingredientArray+stepArray+foodName sẽ đẩy vào database đống này cho tui
+
+        // imgUri+amountArray+unitArray+ingredientArray+stepArray+foodName sẽ đẩy vào database đống này cho tui
+
+        SQLiteDatabase mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        Room.insertIntoFoodTable(mDatabase, foodName, imgUri);
+
+        int foodId = Room.getLastFoodIdFromFoodTable(mDatabase);
+
+        int numberOfIngredients = ingredientArray.size();
+        for (int i = 0; i < numberOfIngredients; i++) {
+            Room.insertIntoIngredientTable(mDatabase, foodId, ingredientArray.get(i), amountArray.get(i), unitArray.get(i));
+        }
+
+        int numberOfSteps = stepArray.size();
+        for (int i = 0; i < numberOfSteps; i++) {
+            Room.insertIntoRecipeTable(mDatabase, foodId, i, stepArray.get(i));
+        }
+
+        Room.retrieveFoodTable(mDatabase);
+        Room.retrieveIngredientTable(mDatabase);
+        Room.retrieveRecipeTable(mDatabase);
 
         setResult(Activity.RESULT_OK);
         finish();
     }
+    //----------------------------------------------------------------------------------------------
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
             Uri selectedImage = data.getData();
             uploadImage.setImageURI(selectedImage);

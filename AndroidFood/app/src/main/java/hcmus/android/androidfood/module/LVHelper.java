@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+// this fucking stupid class is implemented to help listView wrap_content
+
 public class LVHelper {
 
 // Created By Rahul Ravindran 20/07/17
