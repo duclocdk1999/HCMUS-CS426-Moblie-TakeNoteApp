@@ -1,7 +1,9 @@
 package hcmus.android.androidfood;
 
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -42,6 +44,7 @@ import hcmus.android.androidfood.module.LVHelper;
 public class AddRecipe extends AppCompatActivity{
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final String SERVER_ADDRESS = "http://nam1751012.000webhostapp.com/";
+    private static final String DATABASE_NAME = "FoodAppDatabase";
     ArrayList<String> itemList;
     ArrayAdapter<String> adapter;
     ArrayList<String> itemStep;
@@ -139,16 +142,38 @@ public class AddRecipe extends AppCompatActivity{
         foodName = nameFood.getText().toString();  // Thêm vào global foodname string
 //        imgUri+amountArray+unitArray+ingredientArray+stepArray+foodName sẽ đẩy vào database đống này cho tui
         Bitmap image = ((BitmapDrawable) uploadImage.getDrawable()).getBitmap();
-        Date date=new java.util.Date();
+        Date date=new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:hh:mm:ss");
         String strDate = dateFormat.format(date);
         Log.i("date", strDate);
         imgUri = strDate;
         new UploadImage(image, strDate).execute();
+
+
+        SQLiteDatabase mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        Room.insertIntoFoodTable(mDatabase, foodName, imgUri);
+
+        int foodId = Room.getLastFoodIdFromFoodTable(mDatabase);
+
+        int numberOfIngredients = ingredientArray.size();
+        for (int i = 0; i < numberOfIngredients; i++) {
+            Room.insertIntoIngredientTable(mDatabase, foodId, ingredientArray.get(i), amountArray.get(i), unitArray.get(i));
+        }
+
+        int numberOfSteps = stepArray.size();
+        for (int i = 0; i < numberOfSteps; i++) {
+            Room.insertIntoRecipeTable(mDatabase, foodId, i, stepArray.get(i));
+        }
+
+        Room.retrieveFoodTable(mDatabase);
+        Room.retrieveIngredientTable(mDatabase);
+        Room.retrieveRecipeTable(mDatabase);
+
+
+
         Intent mainIntent = new Intent(this, MainActivity.class);
         mainIntent.putExtra("foodName", foodName);
         mainIntent.putExtra("imgUri", imgUri);
-        Log.i("foodName", foodName);
         setResult(Activity.RESULT_OK, mainIntent);
         finish();
     }

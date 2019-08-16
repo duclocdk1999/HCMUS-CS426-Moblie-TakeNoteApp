@@ -1,6 +1,10 @@
 package hcmus.android.androidfood;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +16,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> imgUri;
     ArrayList<String> foodName;
+    SQLiteDatabase mDatabase;
+    String DATABASE_NAME = "FoodAppDatabase";
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +28,16 @@ public class MainActivity extends AppCompatActivity {
         foodName = new ArrayList<String>();
         initImg();
         initFood();
+
+
+        mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        mDatabase.setForeignKeyConstraintsEnabled(true);
+
+        Room.createFoodTable(mDatabase);
+
+        Room.createIngredientTable(mDatabase);
+
+        Room.createRecipeTable(mDatabase);
     }
 
     private void initImg() {
