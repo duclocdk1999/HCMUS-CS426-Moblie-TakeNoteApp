@@ -26,17 +26,22 @@ public class RecyclerFood extends RecyclerView.Adapter<RecyclerFood.RecyclerView
         private static final String SERVER_ADDRESS = "http://nam1751012.000webhostapp.com/";
         private ArrayList<String> foodName = new ArrayList<>();
         private ArrayList<String> imgUri = new ArrayList<>();
+        private ArrayList<Integer> foodId = new ArrayList<>();
+        private OnNoteListener mOnNoteListener;
 
-        public RecyclerFood(ArrayList<String> foodName, ArrayList<String> imgUri) {
+
+        public RecyclerFood(ArrayList<String> foodName, ArrayList<String> imgUri, ArrayList<Integer> foodId, OnNoteListener onNoteListener) {
             this.foodName = foodName;
             this.imgUri = imgUri;
+            this.foodId = foodId;
+            this.mOnNoteListener = onNoteListener;
         }
 
         @Override
         public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.dish, parent, false);
-            return new RecyclerViewHolder(view);
+            return new RecyclerViewHolder(view, mOnNoteListener);
         }
 
         @Override
@@ -55,14 +60,26 @@ public class RecyclerFood extends RecyclerView.Adapter<RecyclerFood.RecyclerView
         }
 
 
-        public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+        public class RecyclerViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
             TextView txtFoodName;
             ImageView imgFood;
-            public RecyclerViewHolder(View itemView) {
+            OnNoteListener onNoteListener;
+            public RecyclerViewHolder(View itemView, OnNoteListener onNoteListener) {
                 super(itemView);
                 txtFoodName = (TextView) itemView.findViewById(R.id.dishName);
                 imgFood = (ImageView) itemView.findViewById(R.id.imageFood);
+                this.onNoteListener = onNoteListener;
+                itemView.setOnClickListener((View.OnClickListener) this);
             }
+
+            @Override
+            public void onClick(View view) {
+                onNoteListener.onNoteClick(getAdapterPosition());
+            }
+        }
+
+        public interface OnNoteListener {
+            void onNoteClick(int position);
         }
 
         private class DownloadImage extends AsyncTask<Void, Void, Bitmap> {

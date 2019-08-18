@@ -5,73 +5,87 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    android:background="@color/colorPrimaryDark"
     tools:context=".MainActivity">
     <LinearLayout
-        android:layout_marginBottom="40dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="CoCo Food"
-        android:textColor="#fff"
-        android:layout_marginTop="30dp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:onClick="getFood"
-        android:paddingTop="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:background="@drawable/recipe"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:text="Food Ingredients" />
-    <TextView
-        android:onClick="addRecipe"
-        android:paddingTop="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:background="@drawable/ingredients"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:text="Add more recipe" />
-    <TextView
-        android:onClick="getNote"
-        android:paddingTop="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:background="@drawable/market"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:text="Shopping   Note" />
-    <TextView
-        android:onClick="getPlace"
-        android:paddingTop="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:background="@drawable/googleapi"
-        android:textColor="#4a4a49"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:text="Near Supermarket" />
+
+        <TextView
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:paddingTop="7dp"
+            android:layout_width="350dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:text="CoCoFood"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="166dp"
+            android:layout_gravity="center"
+            android:background="@drawable/recipe"
+            android:onClick="getFood"
+            android:text="Food Ingredients"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="166dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/ingredients"
+            android:onClick="addRecipe"
+            android:text="Add \n Recipe"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="166dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/market"
+            android:onClick="getNote"
+            android:text="Shopping \n Note"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="166dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/googleapi"
+            android:onClick="getPlace"
+            android:text="Near Supermarket"
+            android:textAlignment="center"
+            android:textColor="#4a4a49"
+            android:textSize="50dp"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

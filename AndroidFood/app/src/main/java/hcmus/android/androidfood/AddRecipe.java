@@ -1,7 +1,6 @@
 package hcmus.android.androidfood;
 
 import android.app.Activity;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -39,7 +38,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import hcmus.android.androidfood.module.Food;
 import hcmus.android.androidfood.module.LVHelper;
+import hcmus.android.androidfood.module.Room;
 
 public class AddRecipe extends AppCompatActivity{
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -142,7 +143,7 @@ public class AddRecipe extends AppCompatActivity{
         foodName = nameFood.getText().toString();  // Thêm vào global foodname string
 //        imgUri+amountArray+unitArray+ingredientArray+stepArray+foodName sẽ đẩy vào database đống này cho tui
         Bitmap image = ((BitmapDrawable) uploadImage.getDrawable()).getBitmap();
-        Date date=new Date();
+        Date date=new java.util.Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd:hh:mm:ss");
         String strDate = dateFormat.format(date);
         Log.i("date", strDate);
@@ -151,7 +152,7 @@ public class AddRecipe extends AppCompatActivity{
 
 
         SQLiteDatabase mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
-        Room.insertIntoFoodTable(mDatabase, foodName, imgUri);
+        Room.insertIntoFoodTable(mDatabase, foodName, imgUri );
 
         int foodId = Room.getLastFoodIdFromFoodTable(mDatabase);
 
@@ -165,7 +166,10 @@ public class AddRecipe extends AppCompatActivity{
             Room.insertIntoRecipeTable(mDatabase, foodId, i, stepArray.get(i));
         }
 
-        Room.retrieveFoodTable(mDatabase);
+        ArrayList<Food> foods = Room.retrieveFoodTable(mDatabase);
+        for (int i = 0; i< foods.size(); i++) {
+            Log.i("food",  foods.get(i).getFoodName());
+        }
         Room.retrieveIngredientTable(mDatabase);
         Room.retrieveRecipeTable(mDatabase);
 
