@@ -5,26 +5,34 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    tools:context=".MainActivity">
+    android:background="#fff"
+    tools:context=".Splash">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:fontFamily="cursive"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:paddingTop="7dp"
             android:layout_width="350dp"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="CoCoFood"
+            android:text="Home Cooking"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="40dp"
+            android:textColor="#736b5b"
+            android:textSize="50dp"
             android:textStyle="bold" />
+        <ImageView
+            android:background="@drawable/cook2"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
 
         <TextView
+            android:fontFamily="monospace"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_marginBottom="20dp"
@@ -32,15 +40,16 @@
             android:layout_width="350dp"
             android:layout_height="166dp"
             android:layout_gravity="center"
-            android:background="@drawable/recipe"
+            android:background="@drawable/ingredient"
             android:onClick="getFood"
-            android:text="Food Ingredients"
+            android:text="Food\nLovers"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="50dp"
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="monospace"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_marginBottom="20dp"
@@ -50,13 +59,14 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/ingredients"
             android:onClick="addRecipe"
-            android:text="Add \n Recipe"
+            android:text="Add\nRecipe"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="50dp"
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="monospace"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_marginBottom="20dp"
@@ -66,13 +76,14 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/market"
             android:onClick="getNote"
-            android:text="Shopping \n Note"
+            android:text="Shopping\nNote"
             android:textAlignment="center"
             android:textColor="#ffffff"
             android:textSize="50dp"
             android:textStyle="bold" />
 
         <TextView
+            android:fontFamily="monospace"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:layout_marginBottom="20dp"

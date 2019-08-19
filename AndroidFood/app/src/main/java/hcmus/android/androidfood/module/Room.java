@@ -54,6 +54,28 @@ public class Room {
         String sqlcmd = "insert into Ingredient(foodId, ingredientName, amount, unit) values (?, ?, ?, ?)";
         mDatabase.execSQL(sqlcmd, new String[] {String.valueOf(foodId), ingredientName, String.valueOf(amount), unit});
     }
+    public static void createCartTable(SQLiteDatabase mDatabase) {
+        String sqlcmd = "create table if not exists Cart(" +
+                "       foodId int," +
+                "       dateCart nvarchar(50) not null," +
+                "       number int," +
+                "       keyId nvarchar(50) not null," +
+                "       primary key (keyId)," +
+                "       foreign key (foodId) references Food(foodId)" +
+                ");";
+        mDatabase.execSQL(sqlcmd);
+    }
+    //--------------------------------------------------------------
+    public static void insertIntoCartTable(SQLiteDatabase mDatabase,
+                                                 int foodId,
+                                                 String date,
+                                                 int number,
+                                                 String keyId
+                                                 ) {
+
+        String sqlcmd = "insert into Cart(foodId, dateCart, number, keyId) values (?, ?, ?, ?)";
+        mDatabase.execSQL(sqlcmd, new String[] {String.valueOf(foodId), date, String.valueOf(number), keyId });
+    }
     //--------------------------------------------------------------
     public static void createRecipeTable(SQLiteDatabase mDatabase) {
         String sqlcmd = "create table if not exists Recipe(" +
@@ -130,6 +152,26 @@ public class Room {
             return recipes;
         }
         return recipes;
+    }
+    //--------------------------------------------------------------
+    public static ArrayList<Cart> retrieveCartTable(SQLiteDatabase mDatabase) {
+        String sqlcmd = "select foodId, dateCart, number from Cart;";
+        ArrayList<Cart> carts = new ArrayList<Cart>();
+        Cursor cursor = mDatabase.rawQuery(sqlcmd, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int foodId = cursor.getInt(0);
+                int number = cursor.getInt(2);
+                String date = cursor.getString(1);
+
+                Cart cart = new Cart(foodId, number, date);
+                carts.add(cart);
+                Log.i("oppa", cart.toString());
+            } while (cursor.moveToNext());
+            return carts;
+        }
+        return carts;
     }
     //--------------------------------------------------------------
     public static int getLastFoodIdFromFoodTable(SQLiteDatabase mDatabase) {

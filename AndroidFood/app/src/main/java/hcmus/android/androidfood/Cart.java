@@ -1,5 +1,7 @@
 package hcmus.android.androidfood;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import hcmus.android.androidfood.module.LVHelper;
+import hcmus.android.androidfood.module.Room;
 
 public class Cart extends AppCompatActivity {
     String foodName;
@@ -23,6 +28,7 @@ public class Cart extends AppCompatActivity {
     ListView ingredientList;
     ArrayAdapter<String> adapter;
     ArrayList<String> itemList;
+    private static final String DATABASE_NAME = "FoodAppDatabase";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,5 +80,17 @@ public class Cart extends AppCompatActivity {
                 LVHelper.getListViewSize(ingredientList);
             }
         }
+    }
+
+    public void saveCart(View view) {
+        Integer index = Integer.parseInt(numIndex.getText().toString());
+        SimpleDateFormat key = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+        String keyId = key.format(new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd:hh:mm");
+        String date = sdf.format(new Date());
+        SQLiteDatabase mDatabase = openOrCreateDatabase(DATABASE_NAME, MODE_PRIVATE, null);
+        Room.insertIntoCartTable(mDatabase, foodId, date, index, keyId);
+        Intent mainIntent = new Intent(this, Splash.class);
+        startActivity(mainIntent);
     }
 }

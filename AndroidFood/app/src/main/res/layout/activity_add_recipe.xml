@@ -9,16 +9,17 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <TextView
+            android:fontFamily="cursive"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:paddingTop="7dp"
             android:layout_width="350dp"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Add more recipe"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="40dp"
+            android:textColor="#736b5b"
+            android:textSize="50dp"
             android:textStyle="bold" />
         <ImageView
             android:adjustViewBounds="true"
@@ -26,26 +27,33 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/imageToUpload"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="wrap_content" />
         <Button
+            android:fontFamily="monospace"
+            android:textAllCaps="false"
             android:layout_marginTop="20dp"
-            android:text="Upload"
+            android:text="Image Upload"
             android:textColor="#fff"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/roundedbutton1"
             android:layout_gravity="center_horizontal"
             android:id="@+id/uploadImage"
-            android:layout_width="100dp"
-            android:layout_height="50dp" />
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
+            android:textStyle="bold"
+            android:fontFamily="cursive"
+            android:background="#bfaf8f"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingVertical="10dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Food's name: "
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20dp" />
+            android:textColor="#fff"
+            android:textSize="25dp" />
         <EditText
             android:textAlignment="center"
             android:layout_gravity="center"
@@ -58,26 +66,30 @@
             android:textSize="20dp"
             />
         <TextView
-            android:layout_gravity="center"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:fontFamily="cursive"
+            android:paddingVertical="10dp"
+            android:textAlignment="center"
+            android:background="#bfaf8f"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Ingredients: "
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20dp" />
+            android:text="Ingredients"
+            android:textColor="#fff"
+            android:textSize="25dp" />
         <LinearLayout
-            android:layout_marginLeft="20dp"
+            android:paddingLeft="20dp"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="40dp">
             <TextView
+                android:fontFamily="cursive"
                 android:layout_gravity="center"
-                android:textStyle="bold"
                 android:paddingTop="10dp"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#736b5b"
                 android:textSize="15dp"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
@@ -85,10 +97,10 @@
                 android:layout_marginRight="10dp"
                 />
             <TextView
-                android:textStyle="bold"
+                android:fontFamily="cursive"
                 android:paddingTop="10dp"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#736b5b"
                 android:textSize="15dp"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
@@ -96,10 +108,10 @@
                 android:layout_marginRight="10dp"
                 />
             <TextView
-                android:textStyle="bold"
+                android:fontFamily="cursive"
                 android:paddingTop="10dp"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#736b5b"
                 android:textSize="15dp"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
@@ -144,12 +156,13 @@
                 android:layout_marginRight="10dp"
                 />
             <Button
+                android:fontFamily="monospace"
                 android:id="@+id/addIngredient"
                 android:text="+"
                 android:textColor="#fff"
                 android:background="@drawable/roundedbutton"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
+                android:layout_width="26dp"
+                android:layout_height="26dp" />
         </LinearLayout>
             <ListView
                 android:id="@+id/listIngredient"
@@ -158,14 +171,18 @@
             </ListView>
 
         <TextView
-            android:layout_gravity="center"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Recipe: "
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20dp" />
+            android:background="#bfaf8f"
+            android:fontFamily="cursive"
+            android:paddingVertical="10dp"
+            android:text="Recipe"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="25dp" />
         <LinearLayout
             android:layout_marginLeft="20dp"
             android:orientation="horizontal"
@@ -182,12 +199,13 @@
                 android:layout_marginRight="10dp"
                 />
             <Button
+                android:fontFamily="monospace"
                 android:textColor="#fff"
                 android:id="@+id/addStep"
                 android:text="+"
                 android:background="@drawable/roundedbutton"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
+                android:layout_width="26dp"
+                android:layout_height="26dp" />
         </LinearLayout>
         <ListView
             android:id="@+id/listStep"
@@ -196,11 +214,17 @@
         </ListView>
 
         <Button
+            android:fontFamily="monospace"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
             android:textColor="#fff"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/roundedbutton1"
             android:onClick="saveNote"
             android:layout_gravity="center"
-            android:layout_width="148dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Recipe" />
     </LinearLayout>
