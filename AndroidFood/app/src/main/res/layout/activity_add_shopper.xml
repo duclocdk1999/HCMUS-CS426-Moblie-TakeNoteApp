@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:background="#fff">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <TextView
+            android:fontFamily="cursive"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:paddingTop="7dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add Shopper"
+            android:textAlignment="center"
+            android:textColor="#736b5b"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:paddingHorizontal="20dp"
+                android:textSize="30dp"
+                android:fontFamily="cursive"
+                android:text="Shopper's Name: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/shopName"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:fontFamily="monospace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:paddingHorizontal="20dp"
+                android:textSize="30dp"
+                android:fontFamily="cursive"
+                android:text="Address: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/addressName"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:fontFamily="monospace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:paddingHorizontal="20dp"
+                android:textSize="30dp"
+                android:fontFamily="cursive"
+                android:text="Phone: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/phone"
+                android:paddingLeft="10dp"
+                android:textSize="20dp"
+                android:fontFamily="monospace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            android:fontFamily="monospace"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="#fff"
+            android:background="@drawable/roundedbutton1"
+            android:onClick="saveShopper"
+            android:layout_gravity="center"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save" />
+    </LinearLayout>
+
+</ScrollView>

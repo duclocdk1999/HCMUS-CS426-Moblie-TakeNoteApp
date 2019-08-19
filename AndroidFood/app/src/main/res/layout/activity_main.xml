@@ -93,7 +93,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/googleapi"
             android:onClick="getPlace"
-            android:text="Near Supermarket"
+            android:text="Convenient\nShopper"
             android:textAlignment="center"
             android:textColor="#4a4a49"
             android:textSize="50dp"

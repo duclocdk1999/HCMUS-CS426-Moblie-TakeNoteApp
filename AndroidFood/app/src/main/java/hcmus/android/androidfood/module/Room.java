@@ -76,6 +76,28 @@ public class Room {
         String sqlcmd = "insert into Cart(foodId, dateCart, number, keyId) values (?, ?, ?, ?)";
         mDatabase.execSQL(sqlcmd, new String[] {String.valueOf(foodId), date, String.valueOf(number), keyId });
     }
+    public static void createShopperTable(SQLiteDatabase mDatabase) {
+        String sqlcmd = "create table if not exists Shopper(" +
+                "       name nvarchar(100) not null," +
+                "       address nvarchar(100) not null," +
+                "       phone nvarchar(100) not null," +
+                "       lat double," +
+                "       longT double," +
+                "       primary key (address)" +
+                ");";
+        mDatabase.execSQL(sqlcmd);
+    }
+    //--------------------------------------------------------------
+    public static void insertIntoShopperTable(SQLiteDatabase mDatabase,
+                                           String name,
+                                           String address,
+                                           String phone,
+                                           Double lat, Double longT
+    ) {
+
+        String sqlcmd = "insert into Shopper(name, address, phone, lat, longT) values (?, ?, ?, ?, ?)";
+        mDatabase.execSQL(sqlcmd, new String[] {name, address, phone, String.valueOf(lat), String.valueOf(longT) });
+    }
     //--------------------------------------------------------------
     public static void createRecipeTable(SQLiteDatabase mDatabase) {
         String sqlcmd = "create table if not exists Recipe(" +
@@ -172,6 +194,26 @@ public class Room {
             return carts;
         }
         return carts;
+    }
+    public static ArrayList<Shoppers> retrieveShopperTable(SQLiteDatabase mDatabase) {
+        String sqlcmd = "select name, address, phone, lat, longT from Shopper;";
+        ArrayList<Shoppers> shoppers = new ArrayList<Shoppers>();
+        Cursor cursor = mDatabase.rawQuery(sqlcmd, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String name = cursor.getString(0);
+                String address = cursor.getString(1);
+                String phone = cursor.getString(2);
+                Double lat = cursor.getDouble(3);
+                Double longT = cursor.getDouble(4);
+
+                Shoppers shopper = new Shoppers(name, address, phone, lat, longT);
+                shoppers.add(shopper);
+            } while (cursor.moveToNext());
+            return shoppers;
+        }
+        return shoppers;
     }
     //--------------------------------------------------------------
     public static int getLastFoodIdFromFoodTable(SQLiteDatabase mDatabase) {

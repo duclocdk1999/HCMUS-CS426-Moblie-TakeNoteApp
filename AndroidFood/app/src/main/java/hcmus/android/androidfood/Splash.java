@@ -37,8 +37,10 @@ public class Splash extends AppCompatActivity {
         Room.createCartTable(mDatabase);
 
         Room.createRecipeTable(mDatabase);
+        Room.createShopperTable(mDatabase);
         if (Room.retrieveFoodTable(mDatabase).size() == 0) {
             initFood();
+            initShopper();
         }
     }
     private void initFood() {
@@ -176,8 +178,7 @@ public class Splash extends AppCompatActivity {
         Room.insertIntoRecipeTable(mDatabase, foodId, 2, "B3: Múc phở ra bát");
     }
     public void getPlace(View view) {
-        Intent getPlace = new Intent(this, MapsActivity.class);
-        getPlace.putExtra("address", "Ben Tre");
+        Intent getPlace = new Intent(this, Shopper.class);
         startActivityForResult(getPlace,4);
     }
 
@@ -186,6 +187,11 @@ public class Splash extends AppCompatActivity {
         getFoodIntent.putExtra("foodName", foodName);
         getFoodIntent.putExtra("imgUri", imgUri);
         startActivity(getFoodIntent);
+    }
+    private void initShopper() {
+        Room.insertIntoShopperTable(mDatabase, "American Food Supllier", "227 Đường Nguyễn Văn Cừ, Phường 4, Quận 5", "0909207070", 10.762913, 106.679983);
+        Room.insertIntoShopperTable(mDatabase, "Trái Cây Châu Long", "329 Đường Trần Hưng Đạo, Phường Cô Giang, Quận 1","0234567134",10.7597498,106.6861483);
+        Room.insertIntoShopperTable(mDatabase,"Sạp thịt heo Đức Lộc", "Số 104, Yersin, Phường Nguyễn Thái Bình, Quận 1", "01652916512", 10.7675084, 106.6942753);
     }
 
     public void addRecipe(View view) {
